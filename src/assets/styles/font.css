@@ -1,0 +1,17 @@
+/* HK Gorkest */
+
+@font-face {
+  font-family: 'umail sans';
+  src: url('../fonts/GlacialIndifference-Regular.otf') format('woff');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'umail sans';
+  src: url('../fonts/GlacialIndifference-Bold.otf') format('woff');
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
