@@ -17,9 +17,9 @@ const Sidebar = () => {
     const [hoverRef, isHovered] = useHover();
     return (
         <SidebarContainer ref={hoverRef} isHovered={isHovered}>
-            <SidebarCompose role="button">
-                <Compose className="comp">Compose</Compose>
-            </SidebarCompose>
+            <div role="button" className="sidebar_compose">
+                <div className="compose">Compose</div>
+            </div>
         </SidebarContainer>
     );
 };
@@ -34,7 +34,6 @@ const SidebarContainer = styled.div`
     left: 0;
     min-height: 1px;
     float: left;
-    padding-right: ${({ isHovered }) => (isHovered ? "100px" : "0px")};
     &:hover {
         display: flex;
         flex-direction: column;
@@ -50,17 +49,61 @@ const SidebarContainer = styled.div`
         z-index: 6;
         transition-property: background-color, box-shadow, max-width, min-width;
     }
-`;
-const SidebarCompose = styled.div`
-    display: flex;
-    font-size: medium;
-    height: 48px;
-    margin: 16px 0;
-    padding: 0 0 0 8px;
-    align-items: center;
-`;
-const Compose = styled.div`
-    ${SidebarContainer} & {
+    .sidebar_compose {
+        display: flex;
+        font-size: medium;
+        height: 48px;
+        margin: 16px 0;
+        padding: 0 0 0 8px;
+        align-items: center;
+        /* padding-right: ${({ isHovered }) =>
+            isHovered ? "100px" : "0px"}; */
+        & > .compose {
+            box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
+                0 1px 3px 1px rgb(60 64 67 / 15%);
+            font-family: "umail sans";
+            letter-spacing: 0.25px;
+            align-items: center;
+            background-color: #fff;
+            background-image: none;
+            color: #3c4043;
+            display: inline-flex;
+            /* font-weight: 500; */
+            min-width: 56px;
+            overflow: hidden;
+            text-transform: none;
+            transition-duration: 0.15s;
+            transition: box-shadow 0.08s linear,
+                min-width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            padding-right: ${({ isHovered }) =>
+                isHovered ? "100px" : "0px"} !important;
+            font-size: ${({ isHovered }) => (isHovered ? "0.975rem" : "0px")};
+            height: ${({ isHovered }) => (isHovered ? "50px" : "56px")};
+            &:hover {
+                height: 46px;
+                background-color: none;
+                box-shadow: none;
+            }
+            &:before {
+                background-image: url(https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png);
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: 32px;
+                content: "";
+                display: block;
+                height: 48px;
+                min-width: 56px;
+            }
+            &:hover,
+            &:focus {
+                box-shadow: 0 1px 3px 0 rgb(60 64 67 / 30%),
+                    0 4px 8px 3px rgb(60 64 67 / 15%);
+                background-color: #fafafb;
+            }
+        }
+    }
+    & .compose {
         border-radius: 28px;
         font-size: 0;
         height: 56px;
@@ -68,52 +111,6 @@ const Compose = styled.div`
         width: 56px;
         transition: box-shadow 0.08s linear,
             min-width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    ${SidebarCompose} > & {
-        box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
-            0 1px 3px 1px rgb(60 64 67 / 15%);
-        font-family: "umail sans";
-        letter-spacing: 0.25px;
-        align-items: center;
-        background-color: #fff;
-        background-image: none;
-        color: #3c4043;
-        display: inline-flex;
-        /* font-weight: 500; */
-        min-width: 56px;
-        overflow: hidden;
-        text-transform: none;
-        transition-duration: 0.15s;
-        transition: box-shadow 0.08s linear,
-            min-width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-        cursor: pointer;
-        border-radius: 28px;
-        padding-right: ${({ isHovered }) =>
-            isHovered ? "100px" : "0px"} !important;
-        font-size: ${({ isHovered }) => (isHovered ? "0.875" : "0px")};
-        &:hover {
-            border-radius: 24px;
-            /* font-size: 0.875rem; */
-            height: 46px;
-            background-color: none;
-            box-shadow: none;
-        }
-        &:before {
-            background-image: url(https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png);
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: 32px;
-            content: "";
-            display: block;
-            height: 48px;
-            min-width: 56px;
-        }
-        &:hover,
-        &:focus {
-            box-shadow: 0 1px 3px 0 rgb(60 64 67 / 30%),
-                0 4px 8px 3px rgb(60 64 67 / 15%);
-            background-color: #fafafb;
-        }
     }
 `;
 export default Sidebar;
