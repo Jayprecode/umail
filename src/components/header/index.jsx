@@ -1,3 +1,6 @@
+/* -------------------------------------------------------------------------- */
+/*                            External Dependencies                           */
+/* -------------------------------------------------------------------------- */
 import React from "react";
 import styled from "styled-components";
 import { Avatar, IconButton } from "@material-ui/core";
@@ -32,7 +35,9 @@ const Header = () => (
                     arial-label="Search mail"
                     spellCheck="false"
                 />
-                <TuneIcon />
+                <IconButton>
+                    <TuneIcon />
+                </IconButton>
             </form>
             <div className="ms">
                 <IconButton>
