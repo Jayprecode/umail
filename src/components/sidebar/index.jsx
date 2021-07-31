@@ -1,17 +1,26 @@
-/* eslint-disable prettier/prettier */
-/* eslint-disable no-use-before-define */
 /* -------------------------------------------------------------------------- */
 /*                            External Dependencies                           */
 /* -------------------------------------------------------------------------- */
 import React from "react";
 // import { Button } from "@material-ui/core";
-// import AddIcon from "@material-ui/icons/Add";
+import { IconButton } from "@material-ui/core";
+import InboxIcon from "@material-ui/icons/Inbox";
+import StarIcon from "@material-ui/icons/Star";
+import AccessTimeIcon from "@material-ui/icons/AccessTime";
+import LabelImportantIcon from "@material-ui/icons/LabelImportant";
+import NearMeIcon from "@material-ui/icons/NearMe";
+import NoteIcon from "@material-ui/icons/Note";
+import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import PersonIcon from "@material-ui/icons/Person";
+import DuoIcon from "@material-ui/icons/Duo";
+import PhoneIcon from "@material-ui/icons/Phone";
 import styled from "styled-components";
 
 /* -------------------------------------------------------------------------- */
 /*                            Internal Dependencies                           */
 /* -------------------------------------------------------------------------- */
 import useHover from "../../hooks/useHover";
+import SidebarOption from "../sidebar-options";
 
 const Sidebar = () => {
     const [hoverRef, isHovered] = useHover();
@@ -20,6 +29,30 @@ const Sidebar = () => {
             <div role="button" className="sidebar_compose">
                 <div className="compose">Compose</div>
             </div>
+            <SidebarOption Icon={InboxIcon} title="Inbox" number={54} />
+            <SidebarOption Icon={StarIcon} title="Starred" number={36} />
+            <SidebarOption Icon={AccessTimeIcon} title="Snoozed" number={36} />
+            <SidebarOption Icon={NearMeIcon} title="Sent" number={36} />
+            <SidebarOption
+                Icon={LabelImportantIcon}
+                title="Important"
+                number={36}
+            />
+            <SidebarOption Icon={NoteIcon} title="Draft" number={36} />
+            <SidebarOption Icon={ExpandMoreIcon} title="More" number={36} />
+            <SidebarFooter>
+                <div className="sidebar_footer">
+                    <IconButton>
+                        <PersonIcon />
+                    </IconButton>
+                    <IconButton>
+                        <DuoIcon />
+                    </IconButton>
+                    <IconButton>
+                        <PhoneIcon />
+                    </IconButton>
+                </div>
+            </SidebarFooter>
         </SidebarContainer>
     );
 };
@@ -27,13 +60,14 @@ const Sidebar = () => {
 const SidebarContainer = styled.div`
     width: 187px;
     height: 599px;
-    max-width: 72px !important;
-    min-width: 72px !important;
+    max-width: 72px;
+    min-width: 72px;
     position: fixed;
     margin-top: 0;
     left: 0;
     min-height: 1px;
     float: left;
+    display: inline-block;
     &:hover {
         display: flex;
         flex-direction: column;
@@ -49,6 +83,15 @@ const SidebarContainer = styled.div`
         z-index: 6;
         transition-property: background-color, box-shadow, max-width, min-width;
     }
+    &:hover span {
+        position: absolute;
+        left: 210px;
+        bottom: 11px;
+        text-align: center;
+        background-color: transparent;
+        color: #c04b37;
+        font-weight: 500;
+    }
     .sidebar_compose {
         display: flex;
         font-size: medium;
@@ -56,8 +99,6 @@ const SidebarContainer = styled.div`
         margin: 16px 0;
         padding: 0 0 0 8px;
         align-items: center;
-        /* padding-right: ${({ isHovered }) =>
-            isHovered ? "100px" : "0px"}; */
         & > .compose {
             box-shadow: 0 1px 2px 0 rgb(60 64 67 / 30%),
                 0 1px 3px 1px rgb(60 64 67 / 15%);
@@ -112,5 +153,8 @@ const SidebarContainer = styled.div`
         transition: box-shadow 0.08s linear,
             min-width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     }
+`;
+const SidebarFooter = styled.div`
+    display: flex;
 `;
 export default Sidebar;
