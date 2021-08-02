@@ -1,11 +1,9 @@
 import React from "react";
-import Header from "./components/header";
-import Sidebar from "./components/sidebar";
+import Routes from "./routes";
 
 const App = () => (
     <div className="App">
-        <Header />
-        <Sidebar />
+        <Routes />
     </div>
 );
 

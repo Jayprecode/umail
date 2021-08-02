@@ -1,24 +1,20 @@
-/* -------------------------------------------------------------------------- */
-/*                            External Dependencies                           */
-/* -------------------------------------------------------------------------- */
 import React from "react";
 import styled from "styled-components";
 
-const sidebarOption = ({ Icon, title, number }) => (
-    <SidebarOption>
+const sidebarFooter = ({ Icon, title, number }) => (
+    <SidebarFooter>
         <Icon />
         <h3>{title}</h3>
         <span>{number}</span>
-    </SidebarOption>
+    </SidebarFooter>
 );
 
-const SidebarOption = styled.div`
+const SidebarFooter = styled.div`
     margin-left: 10px;
     margin-right: 10px;
     margin-bottom: 10px;
+    border-radius: 28px;
     padding: 0 0 0 9px;
-    border-top-left-radius: 20px;
-    border-bottom-right-radius: 20px;
     cursor: pointer;
     color: #818181;
     background-color: #fff;
@@ -26,14 +22,19 @@ const SidebarOption = styled.div`
         0 1px 3px 1px rgb(60 64 67 / 15%);
     font-family: "umail sans";
     letter-spacing: 0.25px;
-    min-width: 20px;
+    min-width: -20px !important;
     position: relative;
     display: flex;
     align-items: center;
+    height: 30px;
     overflow: hidden;
+    white-space: nowrap;
     text-transform: none;
+    transition: box-shadow 0.08s linear,
+        min-width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     & > .MuiSvgIcon-root {
         padding: 5px;
+        font-size: 20px;
     }
     & > h3 {
         flex: 1;
@@ -53,16 +54,17 @@ const SidebarOption = styled.div`
         background-color: #c04b37;
         color: white;
     }
+    &:hover {
+        height: 34px;
+    }
     &:hover,
     &:hover > p,
     &:hover > h3 {
         background-color: #fcecec;
         color: #c04b37;
-        /* font-weight: 800 !important; */
     }
     &.active {
         background-color: #fcecec;
     }
 `;
-
-export default sidebarOption;
+export default sidebarFooter;

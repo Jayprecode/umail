@@ -1,9 +1,13 @@
+/* eslint-disable no-use-before-define */
 /* -------------------------------------------------------------------------- */
 /*                            External Dependencies                           */
 /* -------------------------------------------------------------------------- */
 import React from "react";
-// import { Button } from "@material-ui/core";
-import { IconButton } from "@material-ui/core";
+import styled from "styled-components";
+
+/* -------------------------------------------------------------------------- */
+/*                            MaterialIcon Dependencies                           */
+/* -------------------------------------------------------------------------- */
 import InboxIcon from "@material-ui/icons/Inbox";
 import StarIcon from "@material-ui/icons/Star";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
@@ -11,16 +15,16 @@ import LabelImportantIcon from "@material-ui/icons/LabelImportant";
 import NearMeIcon from "@material-ui/icons/NearMe";
 import NoteIcon from "@material-ui/icons/Note";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import PersonIcon from "@material-ui/icons/Person";
 import DuoIcon from "@material-ui/icons/Duo";
+import KeyboardIcon from "@material-ui/icons/Keyboard";
 import PhoneIcon from "@material-ui/icons/Phone";
-import styled from "styled-components";
 
 /* -------------------------------------------------------------------------- */
 /*                            Internal Dependencies                           */
 /* -------------------------------------------------------------------------- */
 import useHover from "../../hooks/useHover";
-import SidebarOption from "../sidebar-options";
+import SidebarOption from "./sidebarOptions";
+import SidebarFooter from "./sidebarFooter";
 
 const Sidebar = () => {
     const [hoverRef, isHovered] = useHover();
@@ -40,19 +44,17 @@ const Sidebar = () => {
             />
             <SidebarOption Icon={NoteIcon} title="Draft" number={36} />
             <SidebarOption Icon={ExpandMoreIcon} title="More" number={36} />
-            <SidebarFooter>
-                <div className="sidebar_footer">
-                    <IconButton>
-                        <PersonIcon />
-                    </IconButton>
-                    <IconButton>
-                        <DuoIcon />
-                    </IconButton>
-                    <IconButton>
-                        <PhoneIcon />
-                    </IconButton>
-                </div>
-            </SidebarFooter>
+            <div className="rs">
+                <hr className="hrs" />
+                <div className="brs" />
+            </div>
+            <SidebarFooter Icon={DuoIcon} title="New Meeting" />
+            <SidebarFooter Icon={KeyboardIcon} title="Join a Meeting" />
+            <SidebarFooter Icon={PhoneIcon} title="Call a client" />
+            <div className="rs">
+                <hr className="hrs" />
+                <div className="brs" />
+            </div>
         </SidebarContainer>
     );
 };
@@ -96,7 +98,7 @@ const SidebarContainer = styled.div`
         display: flex;
         font-size: medium;
         height: 48px;
-        margin: 16px 0;
+        margin: 16px 0 20px 0;
         padding: 0 0 0 8px;
         align-items: center;
         & > .compose {
@@ -153,8 +155,36 @@ const SidebarContainer = styled.div`
         transition: box-shadow 0.08s linear,
             min-width 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     }
-`;
-const SidebarFooter = styled.div`
-    display: flex;
+    .rs {
+        left: -25px;
+        top: 233px;
+        box-shadow: inset 0 1px 0 rgb(100 121 143 / 12%);
+        margin: 0;
+        color: #202124;
+        resize: vertical;
+        margin-bottom: 5px;
+        overflow: clip;
+        &:focus-visible {
+            outline: -webkit-focus-ring-color auto 1px;
+        }
+    }
+    .hrs {
+        position: absolute;
+        cursor: row-resize;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+    }
+    .brs {
+        height: 8px;
+        opacity: 1;
+    }
+    .rs .hrs .brs {
+        background: #dadce0;
+        height: 4px;
+        margin: 4px auto 0;
+        width: 32px;
+    }
 `;
 export default Sidebar;
